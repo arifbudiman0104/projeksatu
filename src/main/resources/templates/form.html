@@ -18,10 +18,14 @@ and open the template in the editor.
             <form action="/add" th:action="@{/add}" th:object="${newdata}" method="GET">
                 <p>Nama:</p>
                 <input type="text" name="nama" value=""></input><br>
+                <br>
                 <button type="submit">Save</button>
+                <br>
             </form>
             <p th:text="${result}"></p>
             <p th:text="${action}"></p>
+            <br>
+
         </div>
     </body>
 </html>

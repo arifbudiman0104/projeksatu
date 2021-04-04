@@ -17,28 +17,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AccessController {
-    @GetMapping("/forms")
+    @GetMapping("/form")
     public String newForm(){
-        return "newdata";
+        return "form";
     }
-
-//    @GetMapping("/add")
-//    public String newData(HttpServletRequest request, Model model) {
-//        String namaBaru = request.getParameter("nama");
-//        MydataJpaController ctrl = new MydataJpaController();
-//            Mydata data = new Mydata();
-//            data.setNama(namaBaru);
-//            ctrl.create(data);
-//        try {
-//            MydataJpaController ctrl = new MydataJpaController();
-//            Mydata data = new Mydata();
-//            data.setNama(namaBaru);
-//            ctrl.create(data);
-//            model.addAttribute("result", "Data tersimpan");
-//        } catch (Exception e) {
-//            model.addAttribute("result", "Gagal simpan");
-//        }
-//        model.addAttribute("result", "Update database selesai");
-//        return "form";
-//    }
+@GetMapping("/add")  
+    public String newData(HttpServletRequest request, Model model){
+        String namaBaru = request.getParameter("nama");
+        try{
+        MydataJpaController ctrl = new MydataJpaController();
+        Mydata data = new Mydata();
+        data.setNama(namaBaru);
+        ctrl.create(data);
+        model.addAttribute("result", "Data Tersimpan");
+        }catch (Exception e) {
+           model.addAttribute("result", "Gagal Simpan");
+        }
+        model.addAttribute("action", "Update database selesai");
+    return "form";
+    }
 }

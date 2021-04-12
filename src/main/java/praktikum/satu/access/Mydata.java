@@ -12,8 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -33,13 +35,27 @@ public class Mydata implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Integer id;
-    @Column(name = "Nama")
+    @Column(name = "nama")
     private String nama;
+    
+    @OneToOne
+    @JoinColumn(name="id_nik")
+    private Mydetail mydetail;
 
     public Mydata() {
     }
+
+    public Mydetail getMydetail() {
+        return mydetail;
+    }
+
+    public void setMydetail(Mydetail mydetail) {
+        this.mydetail = mydetail;
+    }
+    
+    
 
     public Mydata(Integer id) {
         this.id = id;
@@ -83,7 +99,7 @@ public class Mydata implements Serializable {
 
     @Override
     public String toString() {
-        return "praktikum.satu.access.Mydata[ id=" + id + " ]";
+        return "Praktikum.project.satu.access.Mydata[ id=" + id + " ]";
     }
     
 }
